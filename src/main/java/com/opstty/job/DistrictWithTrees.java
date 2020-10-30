@@ -7,6 +7,7 @@ import com.opstty.reducer.IntSumReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -22,12 +23,12 @@ public class DistrictWithTrees {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "districtwithtrees");
-        job.setJarByClass(com.opstty.job.DistrictWithTrees.class);
+        job.setJarByClass(DistrictWithTrees.class);
         job.setMapperClass(DisWTreesMapper.class);
         job.setCombinerClass(DisWTreesReducer.class);
         job.setReducerClass(DisWTreesReducer.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(NullWritable.class);
         for (int i = 0; i < otherArgs.length - 1; ++i) {
             FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
         }
