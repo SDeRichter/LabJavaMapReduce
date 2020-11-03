@@ -1,6 +1,7 @@
 package com.opstty;
 
 import com.opstty.job.DistrictWithTrees;
+import com.opstty.job.NumberOfTreesBySpecies;
 import com.opstty.job.TreeSpecies;
 import com.opstty.job.WordCount;
 import org.apache.hadoop.util.ProgramDriver;
@@ -16,6 +17,8 @@ public class AppDriver {
                     "A map/reduce program that output the districts with trees.");
             programDriver.addClass("treespecies", TreeSpecies.class,
                     "A map/reduce program that output the genre of trees.");
+            programDriver.addClass("numbertreebyspecies", NumberOfTreesBySpecies.class,
+                    "A map/reduce program that output the number of trees by species.");
             exitCode = programDriver.run(argv);
         } catch (Throwable throwable) {
             throwable.printStackTrace();

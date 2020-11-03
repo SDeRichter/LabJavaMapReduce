@@ -144,5 +144,23 @@ drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 01:23 wordcount
 **1.8.1 Districts containing trees (very easy)**
 
 ````
-
+-sh-4.2$ hdfs dfs -cat output_trees/part-r-00000
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+3
+4
+5
+6
+7
+8
+9
+-sh-4.2$
 ````
