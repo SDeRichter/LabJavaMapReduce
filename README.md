@@ -3,6 +3,17 @@
 ## 1.6 Send the JAR to the edge node
 **1.6.3 Run the job**
 
+We will always have this command to run the mar/reduce job from the ssh and hdfs : 
+
+````
+-sh-4.2$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar
+ wordcount /user/gprecigout/davinci.txt test
+````
+The command contains in this order: the call to yarn, the program compiled with maven under a.jar, the job to run , the
+input, the output.
+
+We will not copy each working job to not overload this readme with useless text, but here is the result for the first 
+one:
 ````
 -sh-4.2$ yarn jar hadoop-examples-mapreduce-1.0-SNAPSHOT-jar-with-dependencies.jar wordcount /user/gprecigout/davinci.txt test
 20/10/30 16:21:32 INFO client.AHSProxy: Connecting to Application History server at hadoop-master03.efrei.online/163.172.100.24:10200
@@ -83,6 +94,10 @@
                 Bytes Read=163465
         File Output Format Counters
                 Bytes Written=69045
+````
+We use the next commands to check that the job is successful and to see the result:
+
+````
 -sh-4.2$ hdfs dfs -ls /user/gprecigout/test
 Found 2 items
 -rw-r--r--   3 gprecigout hdfs          0 2020-10-30 16:22 /user/gprecigout/test/_SUCCESS
@@ -109,8 +124,10 @@ $5,000) 1
 “Rather 1
 ````
 
+
 ##1.8 Remarkable trees of Paris
 
+We upload the csv file to the hdfs.
 ````
 -sh-4.2$ wget https://raw.githubusercontent.com/makayel/hadoop-examples-mapreduce/main/src/test/resources/data/trees.csv
 --2020-10-30 17:03:04--  https://raw.githubusercontent.com/makayel/hadoop-examples-mapreduce/main/src/test/resources/data/trees.csv
@@ -142,7 +159,9 @@ drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 19:18 user
 drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 01:23 wordcount
 ````
 **1.8.1 Districts containing trees (very easy)**
-
+The reducer is useless here so we send NullWritable instead and just get the district keys.
+We got this result for the first question, the result are shown in ascii alphabetical order and not by ascending
+ numerical order. 
 ````
 -sh-4.2$ hdfs dfs -cat output_trees/part-r-00000
 11
@@ -163,4 +182,114 @@ drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 01:23 wordcount
 8
 9
 -sh-4.2$
+````
+
+**1.8.2 Show all existing species (very easy)**
+
+We just to need to ask for another column in the csv compared to the previous question.
+````
+-sh-4.2$ hdfs dfs -cat treesspeciesdisctrict/part-r-00000
+araucana
+atlantica
+australis
+baccata
+bignonioides
+biloba
+bungeana
+cappadocicum
+carpinifolia
+colurna
+coulteri
+decurrens
+dioicus
+distichum
+excelsior
+fraxinifolia
+giganteum
+giraldii
+glutinosa
+grandiflora
+hippocastanum
+ilex
+involucrata
+japonicum
+kaki
+libanii
+monspessulanum
+nigra
+nigra laricio
+opalus
+orientalis
+papyrifera
+petraea
+pomifera
+pseudoacacia
+sempervirens
+serrata
+stenoptera
+suber
+sylvatica
+tomentosa
+tulipifera
+ulmoides
+virginiana
+x acerifolia
+-sh-4.2$
+
+
+
+````
+
+
+**1.8.3 Number of trees by species (easy)**
+
+Here we count the number of occurrence by keys using the same code as IntSumReducer 
+````
+-sh-4.2$ hdfs dfs -cat out_NOTBS/part-r-00000
+araucana        1
+atlantica       2
+australis       1
+baccata 2
+bignonioides    1
+biloba  5
+bungeana        1
+cappadocicum    1
+carpinifolia    4
+colurna 3
+coulteri        1
+decurrens       1
+dioicus 1
+distichum       3
+excelsior       1
+fraxinifolia    2
+giganteum       5
+giraldii        1
+glutinosa       1
+grandiflora     1
+hippocastanum   3
+ilex    1
+involucrata     1
+japonicum       1
+kaki    2
+libanii 2
+monspessulanum  1
+nigra   3
+nigra laricio   1
+opalus  1
+orientalis      8
+papyrifera      1
+petraea 2
+pomifera        1
+pseudoacacia    1
+sempervirens    1
+serrata 1
+stenoptera      1
+suber   1
+sylvatica       8
+tomentosa       2
+tulipifera      2
+ulmoides        1
+virginiana      2
+x acerifolia    11
+-sh-4.2$ 
 ````
