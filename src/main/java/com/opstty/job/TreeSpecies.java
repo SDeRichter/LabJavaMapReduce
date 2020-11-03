@@ -4,7 +4,6 @@ import com.opstty.mapper.DisWTreesMapper;
 import com.opstty.mapper.TreeSpeciesMapper;
 import com.opstty.reducer.DisWTreesReducer;
 import com.opstty.reducer.TreeSpeciesReducer;
-import com.sun.source.tree.Tree;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
