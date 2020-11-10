@@ -1,10 +1,15 @@
 package com.opstty.job;
 
+import com.opstty.mapper.MaximumHeightMapper;
 import com.opstty.mapper.NumberOfTreesBySpeciesMapper;
+import com.opstty.reducer.MaximumHeightReducer;
 import com.opstty.reducer.NumberOfTreesBySpeciesReducer;
+import org.apache.commons.math3.analysis.function.Max;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -20,12 +25,12 @@ public class MaximumHeight {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "maximumheight");
-        job.setJarByClass(NumberOfTreesBySpecies.class);
-        job.setMapperClass(NumberOfTreesBySpeciesMapper.class);
-        job.setCombinerClass(NumberOfTreesBySpeciesReducer.class);
-        job.setReducerClass(NumberOfTreesBySpeciesReducer.class);
+        job.setJarByClass(MaximumHeight.class);
+        job.setMapperClass(MaximumHeightMapper.class);
+        job.setCombinerClass(MaximumHeightReducer.class);
+        job.setReducerClass(MaximumHeightReducer.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(DoubleWritable.class);
         for (int i = 0; i < otherArgs.length - 1; ++i) {
             FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
         }
