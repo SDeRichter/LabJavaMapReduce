@@ -186,7 +186,7 @@ We got this result for the first question, the result are shown in ascii alphabe
 
 **1.8.2 Show all existing species (very easy)**
 
-We just to need to ask for another column in the csv compared to the previous question.
+We just to need to ask for the species column instead of the district column column in the csv compared to the previous question.
 ````
 -sh-4.2$ hdfs dfs -cat treesspeciesdisctrict/part-r-00000
 araucana
@@ -243,7 +243,8 @@ x acerifolia
 
 **1.8.3 Number of trees by species (easy)**
 
-Here we count the number of occurrence by keys using the same code as IntSumReducer 
+Here we count the number of occurrence by keys using the same Reducer as IntSumReducer. We decided to create
+another file with the exact same code in case we needed to modify it but it was not necessary. 
 ````
 -sh-4.2$ hdfs dfs -cat out_NOTBS/part-r-00000
 araucana        1
@@ -292,4 +293,164 @@ ulmoides        1
 virginiana      2
 x acerifolia    11
 -sh-4.2$ 
+````
+
+**1.8.4 Maximum height per specie of tree (average)**
+
+For this map reduce job, the mapper send the name of the tree specie and the height value as a Double, if the value does not exist we send -1.
+The reducer outputs the maximum value received.
+
+```
+-sh-4.2$ hdfs dfs -cat output_height/part-r-00000                                                                  araucana        9.0
+atlantica       25.0
+australis       16.0
+baccata 13.0
+bignonioides    15.0
+biloba  33.0
+bungeana        10.0
+cappadocicum    16.0
+carpinifolia    30.0
+colurna 20.0
+coulteri        14.0
+decurrens       20.0
+dioicus 10.0
+distichum       35.0
+excelsior       30.0
+fraxinifolia    27.0
+giganteum       35.0
+giraldii        35.0
+glutinosa       16.0
+grandiflora     12.0
+hippocastanum   30.0
+ilex    15.0
+involucrata     12.0
+japonicum       10.0
+kaki    14.0
+libanii 30.0
+monspessulanum  12.0
+nigra   30.0
+nigra laricio   30.0
+opalus  15.0
+orientalis      34.0
+papyrifera      12.0
+petraea 31.0
+pomifera        13.0
+pseudoacacia    11.0
+sempervirens    30.0
+serrata 18.0
+stenoptera      30.0
+suber   10.0
+sylvatica       30.0
+tomentosa       20.0
+tulipifera      35.0
+ulmoides        12.0
+virginiana      14.0
+x acerifolia    45.0
+-sh-4.2$
+```
+
+**1.8.5 Sort the trees height from smallest to largest (average)**
+
+To sort the trees by heights we used the same mapper as question 1.8.4, we call the mapper of 1.8.4 in the job of 1.8.5
+As we set the mapper output to -1 if their is no height value, we are able to check in the reducer and remove lines with this 
+negative height value. 
+
+````
+-sh-4.2$ hdfs dfs -cat output_sortedheight/part-r-00000                                                             araucana        9.0
+atlantica       6.0
+atlantica       25.0
+australis       16.0
+baccata 5.0
+baccata 13.0
+bignonioides    15.0
+biloba  18.0
+biloba  22.0
+biloba  25.0
+biloba  25.0
+biloba  33.0
+bungeana        10.0
+cappadocicum    16.0
+carpinifolia    12.0
+carpinifolia    15.0
+carpinifolia    16.0
+carpinifolia    30.0
+colurna 20.0
+colurna 20.0
+colurna 20.0
+coulteri        14.0
+decurrens       20.0
+dioicus 10.0
+distichum       20.0
+distichum       30.0
+distichum       35.0
+excelsior       30.0
+fraxinifolia    22.0
+fraxinifolia    27.0
+giganteum       20.0
+giganteum       30.0
+giganteum       30.0
+giganteum       35.0
+giraldii        35.0
+glutinosa       16.0
+grandiflora     12.0
+hippocastanum   18.0
+hippocastanum   22.0
+hippocastanum   30.0
+ilex    15.0
+involucrata     12.0
+japonicum       10.0
+kaki    12.0
+kaki    14.0
+libanii 30.0
+libanii 30.0
+monspessulanum  12.0
+nigra   25.0
+nigra   28.0
+nigra   30.0
+nigra laricio   30.0
+opalus  15.0
+orientalis      20.0
+orientalis      20.0
+orientalis      22.0
+orientalis      25.0
+orientalis      26.0
+orientalis      27.0
+orientalis      31.0
+orientalis      34.0
+papyrifera      12.0
+petraea 30.0
+petraea 31.0
+pomifera        13.0
+pseudoacacia    11.0
+sempervirens    30.0
+serrata 18.0
+stenoptera      30.0
+suber   10.0
+sylvatica       2.0
+sylvatica       10.0
+sylvatica       15.0
+sylvatica       18.0
+sylvatica       20.0
+sylvatica       23.0
+sylvatica       30.0
+sylvatica       30.0
+tomentosa       20.0
+tomentosa       20.0
+tulipifera      22.0
+tulipifera      35.0
+ulmoides        12.0
+virginiana      12.0
+virginiana      14.0
+x acerifolia    20.0
+x acerifolia    25.0
+x acerifolia    30.0
+x acerifolia    30.0
+x acerifolia    32.0
+x acerifolia    35.0
+x acerifolia    40.0
+x acerifolia    40.0
+x acerifolia    40.0
+x acerifolia    42.0
+x acerifolia    45.0
+-sh-4.2$
 ````

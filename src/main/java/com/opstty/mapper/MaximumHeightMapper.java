@@ -18,13 +18,13 @@ public class MaximumHeightMapper extends Mapper<LongWritable, Text, Text, Double
         if(!value.toString().contains("GEOPOINT")){
             String[] array= value.toString().split(";");
             Text specie = new Text(array[3]);
-
-                DoubleWritable result = new DoubleWritable(Double.valueOf(array[6]));
-                context.write(specie,result);
-
-            //else{
-               // context.write(specie,new DoubleWritable(0.5));
-            //}
+            if (array[6]!=null && array[6].length()>0) {
+                DoubleWritable result = new DoubleWritable(Double.parseDouble(array[6]));
+                context.write(specie, result);
+            }
+            else{
+                context.write(specie,new DoubleWritable(-1));
+            }
         }
     }
 }
