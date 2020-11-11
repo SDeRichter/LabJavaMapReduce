@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="b48bdc2a-d28a-4620-8189-29f445fd29ab" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/opstty/job/SortHeight.java" afterDir="false" />
@@ -9,15 +10,22 @@
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opstty/AppDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opstty/AppDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/opstty/mapper/MaximumHeightMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opstty/mapper/MaximumHeightMapper.java" afterDir="false" />
+<<<<<<< Updated upstream
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/opstty/reducer/MaximumHeightReducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/opstty/reducer/MaximumHeightReducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/DisWTreesMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/DisWTreesMapperTest.java" afterDir="false" />
+=======
+    <list default="true" id="bdd12567-20ae-46cf-a00b-1269300458c7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
@@ -76,30 +84,18 @@
       </list>
     </option>
   </component>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+>>>>>>> Stashed changes
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="dedicatedModuleDir" value="D:\Efrei\BigDataFrameworks\LAB java map reduce\LabJavaMapReduce" />
-        <option name="importAutomatically" value="true" />
         <option name="jdkForImporter" value="1.8" />
       </MavenImportingSettings>
     </option>
-  </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="hadoop-examples-mapreduce" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="hadoop-examples-mapreduce" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -107,6 +103,7 @@
     <option name="width" value="976" />
     <option name="height" value="1056" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -314,24 +311,14 @@
       <pane id="PackagesPane" />
     </panes>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -348,6 +335,7 @@
     </task>
     <servers />
   </component>
+<<<<<<< Updated upstream
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="9963000" />
   </component>
@@ -570,6 +558,13 @@
         </state>
       </provider>
     </entry>
+=======
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+>>>>>>> Stashed changes
   </component>
   <component name="masterDetails">
     <states>
