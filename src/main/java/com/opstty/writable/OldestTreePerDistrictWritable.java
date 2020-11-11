@@ -1,5 +1,6 @@
 package com.opstty.writable;
 
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.yarn.webapp.hamlet2.Hamlet;
 
 import java.io.DataInput;
@@ -7,41 +8,43 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class OldestTreePerDistrictWritable {
-    private int district;
-    private int age;
+    private IntWritable district;
+    private IntWritable age;
 
     public OldestTreePerDistrictWritable() {
-        district = 1;
-        age = 0;
+        district = new IntWritable(1);
+        age = new IntWritable(0);
     }
 
-    public OldestTreePerDistrictWritable(int District, int Age) {
+    public OldestTreePerDistrictWritable(IntWritable District, IntWritable Age) {
         district = District;
         age = Age;
     }
-    public void write(DataOutput output) throws IOException {
-        output.writeInt(district);
-        output.writeDouble(age);
+    public void read(DataOutput output) throws IOException {
+        int D = new Integer(String.valueOf(district));
+        int A = new Integer(String.valueOf(age));
+        output.writeInt(D);
+        output.writeInt(A);
     }
 
-    public void read(DataInput input) throws IOException {
-        district = input.readInt();
-        age = input.readInt();
+    public void write(DataInput input) throws IOException {
+        district = new IntWritable(input.readInt());
+        age = new IntWritable(input.readInt());
     }
 
-    public int getDistrict() {
+    public IntWritable getDistrict() {
         return district;
     }
 
-    public int getAge() {
+    public IntWritable getAge() {
         return age;
     }
 
-    public void setDistrict(int D) {
+    public void setDistrict(IntWritable D) {
         district = D;
     }
 
-    public void setAge(int A) {
+    public void setAge(IntWritable A) {
         age = A;
     }
 
