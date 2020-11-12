@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +31,10 @@ public class MaximumHeightReducerTest {
 
     @org.junit.Test
     public void testMap() throws IOException, InterruptedException {
-        Iterable<DoubleWritable> value = (Iterable<DoubleWritable>) new DoubleWritable(13.0);
+        DoubleWritable v1 = new DoubleWritable(10);
+        DoubleWritable v2 = new DoubleWritable(5);
+        DoubleWritable v3 = new DoubleWritable(13);
+        Iterable<DoubleWritable> value = Arrays.asList(v1, v2, v3);
 
         this.maximumHeightReducer.reduce(new Text("pomifera"), value, this.context);
         verify(this.context, times(1))
