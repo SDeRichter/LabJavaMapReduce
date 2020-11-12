@@ -20,15 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdd12567-20ae-46cf-a00b-1269300458c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/DistrictWithMostTreesMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/NumberOfTreesByDistrictMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/TreeByHeightMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/reducer/DistrictContainingOldestTreeReducerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/reducer/DistrictWithMostTreesReducerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/reducer/NumberOfTreesByDistrictReducerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/opstty/reducer/TreeByHeightReducerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/DistrictContainingOldestTreeMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/opstty/mapper/DistrictContainingOldestTreeMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +197,7 @@
       <updated>1605024269846</updated>
       <workItem from="1605024272557" duration="5024000" />
       <workItem from="1605109562833" duration="4939000" />
-      <workItem from="1605192977133" duration="11531000" />
+      <workItem from="1605192977133" duration="13397000" />
     </task>
     <servers />
   </component>
@@ -258,22 +251,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="370" y="0" key="#test/0.0.1536.824@0.0.1536.824" timestamp="1605102531954" />
-    <state width="1493" height="281" key="GridCell.Tab.0.bottom" timestamp="1605214591288">
+    <state width="1493" height="281" key="GridCell.Tab.0.bottom" timestamp="1605215052239">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="281" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605214591288" />
-    <state width="1493" height="281" key="GridCell.Tab.0.center" timestamp="1605214591286">
+    <state width="1493" height="281" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1605215052239" />
+    <state width="1493" height="281" key="GridCell.Tab.0.center" timestamp="1605215052238">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="281" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605214591286" />
-    <state width="1493" height="281" key="GridCell.Tab.0.left" timestamp="1605214591286">
+    <state width="1493" height="281" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1605215052238" />
+    <state width="1493" height="281" key="GridCell.Tab.0.left" timestamp="1605215052238">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="281" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605214591286" />
-    <state width="1493" height="281" key="GridCell.Tab.0.right" timestamp="1605214591287">
+    <state width="1493" height="281" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1605215052238" />
+    <state width="1493" height="281" key="GridCell.Tab.0.right" timestamp="1605215052238">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="281" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605214591287" />
+    <state width="1493" height="281" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1605215052238" />
     <state x="540" y="234" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1605214652341">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
