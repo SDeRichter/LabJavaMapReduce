@@ -158,7 +158,7 @@ drwxr-xr-x   - gprecigout hdfs          0 2020-10-30 16:22 test
 drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 19:18 user
 drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 01:23 wordcount
 ````
-**1.8.1 Districts containing trees (very easy)**
+**1.8.1 Districts containing trees (very easy) (Class DistrictWithTrees)**
 The reducer is useless here so we send NullWritable instead and just get the district keys.
 We got this result for the first question, the result are shown in ascii alphabetical order and not by ascending
  numerical order. 
@@ -184,7 +184,7 @@ We got this result for the first question, the result are shown in ascii alphabe
 -sh-4.2$
 ````
 
-**1.8.2 Show all existing species (very easy)**
+**1.8.2 Show all existing species (very easy) (Class TreeSpecies)**
 
 We just to need to ask for the species column instead of the district column column in the csv compared to the previous question.
 ````
@@ -241,7 +241,7 @@ x acerifolia
 ````
 
 
-**1.8.3 Number of trees by species (easy)**
+**1.8.3 Number of trees by species (easy) (Class NumberOfTreesBySpecies)**
 
 Here we count the number of occurrence by keys using the same Reducer as IntSumReducer. We decided to create
 another file with the exact same code in case we needed to modify it but it was not necessary. 
@@ -295,13 +295,14 @@ x acerifolia    11
 -sh-4.2$ 
 ````
 
-**1.8.4 Maximum height per specie of tree (average)**
+**1.8.4 Maximum height per specie of tree (average)(Class MaximumHeight)**
 
 For this map reduce job, the mapper send the name of the tree specie and the height value as a Double, if the value does not exist we send -1.
 The reducer outputs the maximum value received.
 
 ```
--sh-4.2$ hdfs dfs -cat output_height/part-r-00000                                                                  araucana        9.0
+-sh-4.2$ hdfs dfs -cat output_height/part-r-00000
+araucana        9.0
 atlantica       25.0
 australis       16.0
 baccata 13.0
@@ -350,6 +351,10 @@ x acerifolia    45.0
 ```
 
 **1.8.5 Sort the trees height from smallest to largest (average)**
+Part 1 is all tree sorted by species AND THAN by height, Part 2 is all tree height sorted.
+
+*Part 1(Class SortHeight)*
+
 
 To sort the trees by heights we used the same mapper as question 1.8.4, we call the mapper of 1.8.4 in the job of 1.8.5
 As we set the mapper output to -1 if their is no height value, we are able to check in the reducer and remove lines with this 
@@ -358,8 +363,10 @@ negative height value.
 On the test class of the Reducer, we had troubles figuring out why it was working only with the highest value but after some 
 tests and research on Google, we understood that our test checked the last invocation of the write() method thus the highest 
 value if our values are sorted from the smallest one to the highest one.
+
 ````
--sh-4.2$ hdfs dfs -cat output_sortedheight/part-r-00000                                                             araucana        9.0
+-sh-4.2$ hdfs dfs -cat output_sortedheight/part-r-00000
+araucana        9.0
 atlantica       6.0
 atlantica       25.0
 australis       16.0
@@ -458,12 +465,119 @@ x acerifolia    45.0
 -sh-4.2$
 ````
 
+*Part 2(Class TreeByHeight)*
 
-**1.8.6 District containing the oldest tree (difficult)**
+
+We could easily get only the height sorted by outputting a NullWritable key and the height as values from the mapper and 
+simply sort the values in the reducer using a list.
+
+````
+-sh-4.2$ hdfs dfs -cat output_treebyheight/part-r-00000
+2.0
+5.0
+6.0
+9.0
+10.0
+10.0
+10.0
+10.0
+10.0
+11.0
+12.0
+12.0
+12.0
+12.0
+12.0
+12.0
+12.0
+12.0
+13.0
+13.0
+14.0
+14.0
+14.0
+15.0
+15.0
+15.0
+15.0
+15.0
+16.0
+16.0
+16.0
+16.0
+18.0
+18.0
+18.0
+18.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+20.0
+22.0
+22.0
+22.0
+22.0
+22.0
+23.0
+25.0
+25.0
+25.0
+25.0
+25.0
+25.0
+26.0
+27.0
+27.0
+28.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+30.0
+31.0
+31.0
+32.0
+33.0
+34.0
+35.0
+35.0
+35.0
+35.0
+35.0
+40.0
+40.0
+40.0
+42.0
+45.0
+-sh-4.2$
+
+````
+
+**1.8.6 District containing the oldest tree (difficult)(Class DistrictContainingOldestTree)**
 
 We created a custom Writable class containing the district and age, we set a common key to be able to compare every map output in 
- the reducer.We had to set the mapper and reducer output to different classes, we needed to specify the 
-jobmaboutputkey.value to the classes we wanted.
+ the reducer .We had to set the mapper and reducer output to different classes, we needed to specify the 
+job Map Output Key/value to the classes we wanted.
 We had some difficulty with the job not running due to an issue in our custom writable. 
 
 ````
@@ -472,3 +586,48 @@ We had some difficulty with the job not running due to an issue in our custom wr
 -sh-4.2$
 ````
 
+
+
+**1.8.7 District containing the most trees (very difficult)(Class DistrictWithMostTrees)**
+
+For this one we need to link two jobs, we had some issues at first but with some researches and tests we resolved our 
+issues with a temporary file created where our 2 jobs write or read, the file is then deleted at the end of our second job.
+
+The first map reduce job was easy to implement we simply output the district as a key  with value 1 from the mapper and 
+sum them in the reducer. We get the number of trees by species:
+(we got it by not deleting automatically the file the temporary file the first time)
+```
+-sh-4.2$ hdfs dfs -cat temp/part-r-00000
+11      1
+12      29
+13      2
+14      3
+15      1
+16      36
+17      1
+18      1
+19      6
+20      3
+3       1
+4       1
+5       2
+6       1
+7       3
+8       5
+9       1
+-sh-4.2$
+
+```
+
+
+The second map reduce job get the previous jobs result as input, we split the district and values using a \t and store them in a custom writable,
+like in 1.8.6,we also send a null key to be able to compare all districts in the reducer, the district with the highest number is then selected in the and written as output
+
+
+
+````
+-sh-4.2$ hdfs dfs -cat output_DisWithMostTrees/part-r-00000
+16
+-sh-4.2$
+
+```

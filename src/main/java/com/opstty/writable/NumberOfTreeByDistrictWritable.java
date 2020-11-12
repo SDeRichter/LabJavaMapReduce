@@ -17,24 +17,20 @@ public class NumberOfTreeByDistrictWritable implements Writable {
         number = new IntWritable(0);
     }
 
-    public NumberOfTreeByDistrictWritable(Text District, IntWritable Age) {
+    public NumberOfTreeByDistrictWritable(Text District, IntWritable Number) {
         district = District;
-        number = Age;
-    }
-    public void write(DataOutput output) throws IOException {
-        int D = new Integer(String.valueOf(district));
-        int N = new Integer(String.valueOf(number));
-        output.writeInt(D);
-        output.writeInt(N);
+        number = Number;
     }
 
-    public void read(DataInput input) throws IOException {
-        district = new Text(input.readLine());
-        number = new IntWritable(input.readInt());
-    }
+
 
     public Text getDistrict() {
         return district;
+    }
+
+    public void write(DataOutput dataOutput) throws IOException {
+        district.write(dataOutput); //read district
+        number.write(dataOutput); //read age
     }
 
     public IntWritable getNumber() {
@@ -54,5 +50,9 @@ public class NumberOfTreeByDistrictWritable implements Writable {
         number.readFields(dataInput); //read age
     }
 
+    @Override
+    public String toString(){
+        return (getDistrict()+"   "+getNumber());
+    }
 
 }

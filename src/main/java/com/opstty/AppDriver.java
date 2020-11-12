@@ -22,6 +22,8 @@ public class AppDriver {
                     "A map/reduce program that output the district containing the oldest tree.");
             programDriver.addClass("sortheight", SortHeight.class,
                     "A map/reduce program that output the Tree sorted by height for each specie.");
+            programDriver.addClass("treebyheight", TreeByHeight.class,
+                    "A map/reduce program that output the Tree sorted by height.");
             programDriver.addClass("districtwithmosttrees", DistrictWithMostTrees.class,
                     "A map/reduce program that output the District with the most trees.");
             exitCode = programDriver.run(argv);

@@ -11,6 +11,7 @@ import com.opstty.reducer.NumberOfTreesBySpeciesReducer;
 import com.opstty.writable.NumberOfTreeByDistrictWritable;
 import com.opstty.writable.OldestTreePerDistrictWritable;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.IntWritable;
@@ -43,9 +44,11 @@ public class DistrictWithMostTrees {
         for (int i = 0; i < otherArgs.length - 1; ++i) {
             FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
         }
-        FileOutputFormat.setOutputPath(job,
-                new Path(otherArgs[otherArgs.length - 1]));
+
+        Path temp= new Path("Temp");
+        FileOutputFormat.setOutputPath(job,temp);
         job.waitForCompletion(true);
+
 
 
         job2.setJarByClass(DistrictWithMostTrees.class);
@@ -56,14 +59,12 @@ public class DistrictWithMostTrees {
         job2.setMapOutputValueClass(NumberOfTreeByDistrictWritable.class);
         job2.setOutputKeyClass(NullWritable.class);
         job2.setOutputValueClass(Text.class);
-        FileInputFormat.addInputPath(job2,new Path(otherArgs[otherArgs.length -1]));
+        FileInputFormat.addInputPath(job2, temp);
         FileOutputFormat.setOutputPath(job2,
                 new Path(otherArgs[otherArgs.length - 1]));
-
-
-
-
-
-        System.exit(job2.waitForCompletion(true) ? 0 : 1);
+        job2.waitForCompletion(true);
+        FileSystem test =FileSystem.get(conf2);
+        test.delete(temp,true);
+        System.exit(0);
     }
 }

@@ -11,17 +11,19 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class DistrictWithMostTreesReducer extends Reducer<IntWritable, NumberOfTreeByDistrictWritable, Text, NullWritable> {
-    private NumberOfTreeByDistrictWritable result = new NumberOfTreeByDistrictWritable();
+public class DistrictWithMostTreesReducer extends Reducer<IntWritable, NumberOfTreeByDistrictWritable, NullWritable, Text> {
 
     public void reduce(IntWritable key,Iterable<NumberOfTreeByDistrictWritable> values,Context context)
             throws IOException,InterruptedException{
+        Text result=new Text("");
+        int nombre= -1;
+
         for (NumberOfTreeByDistrictWritable current: values) {
-            if (current.getNumber().get() > result.getNumber().get()) {
-                result.setNumber(new IntWritable(current.getNumber().get()));
-                result.setDistrict(new Text(current.getDistrict()));
+            if (current.getNumber().get() > nombre) {
+                nombre=current.getNumber().get();
+                result=new Text(current.getDistrict().toString());
             }
         }
-        context.write(result.getDistrict(),NullWritable.get());
+        context.write(NullWritable.get(),result);
     }
 }
