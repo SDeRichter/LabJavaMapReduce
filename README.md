@@ -1,4 +1,6 @@
-#TP MapReduce2 30/10
+#TP MapReduce2
+Made by Stanislas KIESGEN DE RICHTER and Gabriel PRECIGOUT  
+Link of the Repository: https://github.com/Bryeuch/LabJavaMapReduce
 
 ## 1.6 Send the JAR to the edge node
 **1.6.3 Run the job**
@@ -162,6 +164,9 @@ drwxr-xr-x   - gprecigout hdfs          0 2020-10-15 01:23 wordcount
 The reducer is useless here so we send NullWritable instead and just get the district keys.
 We got this result for the first question, the result are shown in ascii alphabetical order and not by ascending
  numerical order. 
+ 
+ We had some problems to understand how to code tests at first but after some research and the TokenizerMapperTest.java and IntSumReducerTest.java
+ helped us a lot to understand it all and we could start creating our tests
 ````
 -sh-4.2$ hdfs dfs -cat output_trees/part-r-00000
 11
@@ -300,6 +305,7 @@ x acerifolia    11
 For this map reduce job, the mapper send the name of the tree specie and the height value as a Double, if the value does not exist we send -1.
 The reducer outputs the maximum value received.
 
+For the test of the Reducer, we had troubles to create an Iterable of DoubleWritable that we could send to the Reducer, so we browsed Google for at least half an hour before finding and understanding how it works and can be initialized.
 ```
 -sh-4.2$ hdfs dfs -cat output_height/part-r-00000
 araucana        9.0
@@ -580,6 +586,8 @@ We created a custom Writable class containing the district and age, we set a com
 job Map Output Key/value to the classes we wanted.
 We had some difficulty with the job not running due to an issue in our custom writable. 
 
+We also had difficulties with the Mapper Test because we didn't know how to verify the parameters of our custom Writable, 
+we first tried with the any method but then found a better solution using the ArgumentCaptor.
 ````
 -sh-4.2$ hdfs dfs -cat output_DistrictWOldestTree/part-r-00000
 5
