@@ -1,4 +1,4 @@
-#TP MapReduce2
+#TP MapReduce2  
 Made by Stanislas KIESGEN DE RICHTER and Gabriel PRECIGOUT  
 Link of the Repository: https://github.com/Bryeuch/LabJavaMapReduce
 
