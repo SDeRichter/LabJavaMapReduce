@@ -1,13 +1,13 @@
 package com.opstty.writable;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.yarn.webapp.hamlet2.Hamlet;
+import org.apache.hadoop.io.Writable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class OldestTreePerDistrictWritable {
+public class OldestTreePerDistrictWritable implements Writable {
     private IntWritable district;
     private IntWritable age;
 
@@ -20,14 +20,14 @@ public class OldestTreePerDistrictWritable {
         district = District;
         age = Age;
     }
-    public void read(DataOutput output) throws IOException {
+    public void write(DataOutput output) throws IOException {
         int D = new Integer(String.valueOf(district));
         int A = new Integer(String.valueOf(age));
         output.writeInt(D);
         output.writeInt(A);
     }
 
-    public void write(DataInput input) throws IOException {
+    public void read(DataInput input) throws IOException {
         district = new IntWritable(input.readInt());
         age = new IntWritable(input.readInt());
     }
@@ -46,6 +46,12 @@ public class OldestTreePerDistrictWritable {
 
     public void setAge(IntWritable A) {
         age = A;
+    }
+
+    public void readFields(DataInput dataInput) throws IOException {
+        district.readFields(dataInput); //read district
+        age.readFields(dataInput); //read age
+
     }
 
 

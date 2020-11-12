@@ -4,10 +4,12 @@ import com.opstty.mapper.DistrictContainingOldestTreeMapper;
 import com.opstty.mapper.NumberOfTreesBySpeciesMapper;
 import com.opstty.reducer.DistrictContainingOldestTreeReducer;
 import com.opstty.reducer.NumberOfTreesBySpeciesReducer;
+import com.opstty.writable.OldestTreePerDistrictWritable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -25,10 +27,12 @@ public class DistrictContainingOldestTree {
         Job job = Job.getInstance(conf, "DistrictContainingOldestTree");
         job.setJarByClass(DistrictContainingOldestTree.class);
         job.setMapperClass(DistrictContainingOldestTreeMapper.class);
-        job.setCombinerClass(DistrictContainingOldestTreeReducer.class);
+        //job.setCombinerClass(DistrictContainingOldestTreeReducer.class);
         job.setReducerClass(DistrictContainingOldestTreeReducer.class);
-        job.setOutputKeyClass(Integer.class);
-        job.setOutputValueClass(Integer.class);
+        job.setMapOutputKeyClass(IntWritable.class);
+        job.setMapOutputValueClass(OldestTreePerDistrictWritable.class);
+        job.setOutputKeyClass(IntWritable.class);
+        job.setOutputValueClass(NullWritable.class);
         for (int i = 0; i < otherArgs.length - 1; ++i) {
             FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
         }

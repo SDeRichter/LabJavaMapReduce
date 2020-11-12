@@ -457,3 +457,18 @@ x acerifolia    42.0
 x acerifolia    45.0
 -sh-4.2$
 ````
+
+
+**1.8.6 District containing the oldest tree (difficult)**
+
+We created a custom Writable class containing the district and age, we set a common key to be able to compare every map output in 
+ the reducer.We had to set the mapper and reducer output to different classes, we needed to specify the 
+jobmaboutputkey.value to the classes we wanted.
+We had some difficulty with the job not running due to an issue in our custom writable. 
+
+````
+-sh-4.2$ hdfs dfs -cat output_DistrictWOldestTree/part-r-00000
+5
+-sh-4.2$
+````
+
