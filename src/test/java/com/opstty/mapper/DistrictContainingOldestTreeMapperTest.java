@@ -39,7 +39,7 @@ public class DistrictContainingOldestTreeMapperTest {
         OldestTreePerDistrictWritable values = new OldestTreePerDistrictWritable(new IntWritable(7), new IntWritable(Age));
         this.districtContainingOldestTreeMapper.map(null, new Text(value), this.context);
         verify(this.context, times(1))
-                .write(eq(new IntWritable(1)), parameterCaptor.capture()); //any(OldestTreePerDistrictWritable.class)
+                .write(eq(new IntWritable(0)), parameterCaptor.capture()); //any(OldestTreePerDistrictWritable.class)
         assertEquals(new IntWritable(7),parameterCaptor.getValue().getDistrict());
         assertEquals(new IntWritable(85),parameterCaptor.getValue().getAge());
     }

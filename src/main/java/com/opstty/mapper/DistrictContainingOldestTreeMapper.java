@@ -10,7 +10,7 @@ import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class DistrictContainingOldestTreeMapper extends Mapper<LongWritable, Text, IntWritable, OldestTreePerDistrictWritable> {
-    private final static IntWritable zero = new IntWritable(1);
+    private final static IntWritable zero = new IntWritable(0);
     public void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         //only the first line of out csv contains GEOPOINT and it is useless so we remove values containing geopoint
         if(!value.toString().contains("GEOPOINT")){
