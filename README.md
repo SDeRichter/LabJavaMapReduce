@@ -355,6 +355,9 @@ To sort the trees by heights we used the same mapper as question 1.8.4, we call 
 As we set the mapper output to -1 if their is no height value, we are able to check in the reducer and remove lines with this 
 negative height value. 
 
+On the test class of the Reducer, we had troubles figuring out why it was working only with the highest value but after some 
+tests and research on Google, we understood that our test checked the last invocation of the write() method thus the highest 
+value if our values are sorted from the smallest one to the highest one.
 ````
 -sh-4.2$ hdfs dfs -cat output_sortedheight/part-r-00000                                                             araucana        9.0
 atlantica       6.0
